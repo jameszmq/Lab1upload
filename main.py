@@ -17,21 +17,14 @@ Gate_arr = np.zeros(60)
 Envelop_arr = np.zeros(60)
 Audio_arr = np.zeros(60)
 
-for x in range(59):
-#    global Temp_arr
-#    global iHum_arr
-#    global Light_arr
-#    global Gate_arr
-#    global Envelop_arr
-#    global Audio_arr
+for x in range(60):
 
     print("Time = " + datetime.datetime.now().strftime('%H:%M:%S'))
-#    hum, temp = Adafruit_DHT.read_retry(22, 4)
-#    if hum is not None and temp is not None:
-#        print("Temp = " + '{0:0.1f}'.format(temp))
-#        print("Hum = " + '{1:0.1f}%'.format(hum))
-#    else:
-#        print("Failed to grab temp and hum data.")
+    hum, temp = Adafruit_DHT.read_retry(22, 4)
+    if hum is not None and temp is not None:
+        print('Temp = {0:0.1f}\nHum = {1:0.1f}%'.format(temp, hum))
+    else:
+        print("Failed to grab temp and hum data.")
     light = mcp.read_adc(3)
     print("Light = " + str(light))
     gate = mcp.read_adc(2)
@@ -45,16 +38,16 @@ for x in range(59):
     print("Envelop = " + str(envelop))
     audio = mcp.read_adc(0)
     print("Audio = " + str(audio) + '\n')
-#    Temp_arr[x]=temp
-#    Hum_arr[x]=hum
+    Temp_arr[x]=temp
+    Hum_arr[x]=hum
     Light_arr[x]=light
     Envelop_arr[x]=envelop
     Audio_arr[x]=audio
-    time.sleep(1)
+    time.sleep(60)
 
-#np.save("Temp_data", Temp_arr)
-#np.save("Hum_data", Hum_arr)
-#np.save("Light_data", Light_arr)
-#np.save("Gate_data", Gate_arr)
-#np.save("Envelop_data", Envelop_arr)
-#np.save("Audio_data", Audio_arr)
+np.save("Temp_data", Temp_arr)
+np.save("Hum_data", Hum_arr)
+np.save("Light_data", Light_arr)
+np.save("Gate_data", Gate_arr)
+np.save("Envelop_data", Envelop_arr)
+np.save("Audio_data", Audio_arr)
